@@ -1,4 +1,4 @@
-package stribog
+package stribog_bindings
 
 /*
 #include "stribog.h"

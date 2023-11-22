@@ -1,11 +1,9 @@
-package main
+package stribog
 
 import (
-	"fmt"
-	"os"
 	"sync"
 
-	bindings "github.com/dece2183/go-stribog/stribog"
+	bindings "github.com/dece2183/go-stribog/stribog_bindings"
 )
 
 const (
@@ -62,20 +60,4 @@ func New256() *Stribog {
 
 func New512() *Stribog {
 	return &Stribog{size: 512 / 8}
-}
-
-func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("missing message")
-		os.Exit(1)
-	}
-
-	h := New256()
-	h.Write([]byte(os.Args[1]))
-	hash := h.Sum([]byte{})
-
-	for i := 0; i < h.Size(); i++ {
-		fmt.Printf("%X", hash[i])
-	}
-	fmt.Println()
 }
