@@ -54,10 +54,26 @@ func (s *Stribog) Sum(sum []byte) []byte {
 	return append(sum, out...)
 }
 
+func (s *Stribog) CheckSum(p []byte) []byte {
+	if s.size == 256/8 {
+		return bindings.Hash256(p)
+	} else {
+		return bindings.Hash512(p)
+	}
+}
+
 func New256() *Stribog {
 	return &Stribog{size: 256 / 8}
 }
 
 func New512() *Stribog {
 	return &Stribog{size: 512 / 8}
+}
+
+func Sum256(p []byte) []byte {
+	return bindings.Hash256(p)
+}
+
+func Sum512(p []byte) []byte {
+	return bindings.Hash512(p)
 }
